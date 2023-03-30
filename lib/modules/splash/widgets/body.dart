@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:initproject/config/size_config/size_config.dart';
 import 'package:initproject/constants/constants.dart';
 import 'package:initproject/modules/splash/widgets/splash_content.dart';
 import 'package:initproject/modules/sign_in/sign_in_screen.dart';
@@ -53,25 +54,33 @@ class _BodyState extends State<Body> {
             ),
             Expanded(
               flex: 2,
-              child: Column(
-                children: <Widget>[
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      splashData.length,
-                      (index) => buildDot(index: index),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenHeight(20),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        splashData.length,
+                        (index) => buildDot(index: index),
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  DefaultButton(
-                    text: "Continue",
-                    press: () {
-                      Navigator.pushNamed(context, SignInScreen.routeName);
-                    },
-                  ),
-                  const Spacer(),
-                ],
+                    const Spacer(flex: 3),
+                    DefaultButton(
+                      text: "Continue",
+                      press: () {
+                        Navigator.pushNamed(
+                          context,
+                          SignInScreen.routeName,
+                        );
+                      },
+                    ),
+                    const Spacer(),
+                  ],
+                ),
               ),
             ),
           ],
