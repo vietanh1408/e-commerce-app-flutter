@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:initproject/config/size_config/size_config.dart';
-import 'package:initproject/constants/constants.dart';
-import 'package:initproject/modules/splash/widgets/splash_content.dart';
-import 'package:initproject/modules/sign_in/sign_in_screen.dart';
-import 'package:initproject/widgets/stateless/default_button.dart';
+import '../../../config/size_config/size_config.dart';
+import '../../../constants/constants.dart';
+import '../../../modules/splash/widgets/splash_content.dart';
+import '../../../modules/sign_in/sign_in_screen.dart';
+import '../../../widgets/stateless/default_button.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
     },
     {
       "text":
-          "We help people conect with store \naround United State of America",
+          "We help people connect with store \naround United State of America",
       "image": 'assets/images/splash_2.png',
     },
     {

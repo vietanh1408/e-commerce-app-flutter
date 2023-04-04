@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:initproject/config/size_config/size_config.dart';
-import 'package:initproject/modules/splash/widgets/body.dart';
+import '../../config/size_config/size_config.dart';
+import '../../modules/splash/widgets/body.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  static String routeName = '/splash';
 
   @override
   Widget build(BuildContext context) {
