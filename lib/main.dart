@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:initproject/config/themes/theme.dart';
+import '../../config/themes/theme.dart';
 import '../../../config/routes/routes.dart';
 import '../../modules/splash/splash_screen.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:initproject/config/size_config/size_config.dart';
-import 'package:initproject/constants/constants.dart';
-import 'package:initproject/modules/sign_up/sign_up_screen.dart';
+import '../../../config/size_config/size_config.dart';
+import '../../../constants/constants.dart';
+import '../../../modules/sign_up/sign_up_screen.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({Key? key}) : super(key: key);

@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import '../../../utils/keyboard.dart';
-import '../../../widgets/stateless/default_button.dart';
-import '../../../widgets/stateless/form_error.dart';
+
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
-import '../../../widgets/stateless/custom_suffix_icon.dart';
 import '../../../constants/errors.dart';
+import '../../../utils/keyboard.dart';
+import '../../../widgets/stateless/custom_suffix_icon.dart';
+import '../../../widgets/stateless/default_button.dart';
+import '../../../widgets/stateless/form_error.dart';
 
-class SignInForm extends StatefulWidget {
-  const SignInForm({Key? key}) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({Key? key}) : super(key: key);
 
   @override
-  _SignInFormState createState() => _SignInFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+
+  final List<String?> errors = [];
+
   String? email;
   String? password;
-  bool? remember = false;
-  final List<String?> errors = [];
+  String? confirmPassword;
 
   void addError({String? error}) {
     if (!errors.contains(error)) {
@@ -51,33 +54,13 @@ class _SignInFormState extends State<SignInForm> {
           SizedBox(
             height: getProportionateScreenHeight(30),
           ),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              const Text('Remember me'),
-              const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/');
-                },
-                child: const Text(
-                  'Forgot password',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              )
-            ],
+          buildConfirmPasswordFormField(),
+          SizedBox(
+            height: getProportionateScreenHeight(30),
           ),
-          FormError(errors: errors),
+          FormError(
+            errors: errors,
+          ),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
@@ -87,7 +70,7 @@ class _SignInFormState extends State<SignInForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, '/login_success');
+                Navigator.pushNamed(context, '/sign_up_success');
               }
             },
           )
@@ -152,6 +135,36 @@ class _SignInFormState extends State<SignInForm> {
       decoration: const InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSuffixIcon(
+          svgIcon: "assets/icons/Lock.svg",
+        ),
+        helperStyle: TextStyle(
+          height: 0,
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildConfirmPasswordFormField() {
+    return TextFormField(
+      obscureText: true,
+      onSaved: (newValue) => confirmPassword = newValue,
+      onChanged: (value) {
+        if (value == password) {
+          removeError(error: passwordNotMatchError);
+        }
+        return;
+      },
+      validator: (value) {
+        if (value != password) {
+          addError(error: passwordNotMatchError);
+        }
+        return null;
+      },
+      decoration: const InputDecoration(
+        labelText: "Confirm password",
+        hintText: "Re-enter your password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
