@@ -9,6 +9,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import '../../modules/home/home_screen.dart';
 import '../../modules/sign_up/sign_up_screen.dart';
 import '../../modules/sign_in/sign_in_screen.dart';
 import '../../modules/splash/splash_screen.dart';
@@ -17,4 +18,5 @@ final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => const SplashScreen(),
   SignInScreen.routeName: (context) => const SignInScreen(),
   SignUpScreen.routeName: (context) => const SignUpScreen(),
+  HomeScreen.routeName: (context) => const HomeScreen(),
 };

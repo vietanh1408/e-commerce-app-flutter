@@ -37,6 +37,14 @@ class _SignInFormState extends State<SignInForm> {
     }
   }
 
+  void handleLogin() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      KeyboardUtil.hideKeyboard(context);
+      // Navigator.pushNamed(context, '/login_success');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -83,13 +91,7 @@ class _SignInFormState extends State<SignInForm> {
           ),
           DefaultButton(
             text: 'Continue',
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, '/login_success');
-              }
-            },
+            press: handleLogin,
           )
         ],
       ),
