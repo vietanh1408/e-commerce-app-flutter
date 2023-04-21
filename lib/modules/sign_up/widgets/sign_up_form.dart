@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../modules/complete_profile/complete_profile_screen.dart';
 
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
@@ -70,7 +71,10 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, '/sign_up_success');
+                Navigator.pushNamed(
+                  context,
+                  CompleteProfileScreen.routeName,
+                );
               }
             },
           )
@@ -108,6 +112,7 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: 'assets/icons/Mail.svg',
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -127,8 +132,10 @@ class _SignUpFormState extends State<SignUpForm> {
       validator: (value) {
         if (value!.isEmpty) {
           addError(error: passwordRequiredError);
+          return '';
         } else if (value.length < 8) {
           addError(error: passwordLengthError);
+          return '';
         }
         return null;
       },
@@ -139,9 +146,7 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
-        helperStyle: TextStyle(
-          height: 0,
-        ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -159,6 +164,7 @@ class _SignUpFormState extends State<SignUpForm> {
       validator: (value) {
         if (value != password) {
           addError(error: passwordNotMatchError);
+          return '';
         }
         return null;
       },
@@ -169,6 +175,7 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }

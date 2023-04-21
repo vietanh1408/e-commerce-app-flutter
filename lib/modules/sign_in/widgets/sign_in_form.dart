@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../utils/keyboard.dart';
-import '../../../widgets/stateless/default_button.dart';
-import '../../../widgets/stateless/form_error.dart';
+import '../../../modules/forgot_password/forgot_password_screen.dart';
+import '../../../modules/sign_in_success/sign_in_success_screen.dart';
+
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
-import '../../../widgets/stateless/custom_suffix_icon.dart';
 import '../../../constants/errors.dart';
+import '../../../utils/keyboard.dart';
+import '../../../widgets/stateless/custom_suffix_icon.dart';
+import '../../../widgets/stateless/default_button.dart';
+import '../../../widgets/stateless/form_error.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -41,7 +44,7 @@ class _SignInFormState extends State<SignInForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       KeyboardUtil.hideKeyboard(context);
-      // Navigator.pushNamed(context, '/login_success');
+      Navigator.pushNamed(context, SignInSuccessScreen.routeName);
     }
   }
 
@@ -74,7 +77,10 @@ class _SignInFormState extends State<SignInForm> {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(
+                    context,
+                    ForgotPasswordScreen.routeName,
+                  );
                 },
                 child: const Text(
                   'Forgot password',
@@ -84,6 +90,9 @@ class _SignInFormState extends State<SignInForm> {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            height: getProportionateScreenHeight(20),
           ),
           FormError(errors: errors),
           SizedBox(
@@ -127,6 +136,7 @@ class _SignInFormState extends State<SignInForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: 'assets/icons/Mail.svg',
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
@@ -146,8 +156,10 @@ class _SignInFormState extends State<SignInForm> {
       validator: (value) {
         if (value!.isEmpty) {
           addError(error: passwordRequiredError);
+          return '';
         } else if (value.length < 8) {
           addError(error: passwordLengthError);
+          return '';
         }
         return null;
       },
@@ -158,6 +170,7 @@ class _SignInFormState extends State<SignInForm> {
         suffixIcon: CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        errorStyle: TextStyle(height: 0),
       ),
     );
   }
