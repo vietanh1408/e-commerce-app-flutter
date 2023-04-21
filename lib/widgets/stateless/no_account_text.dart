@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
 import '../../../modules/sign_up/sign_up_screen.dart';

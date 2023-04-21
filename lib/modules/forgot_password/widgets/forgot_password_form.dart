@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/errors.dart';
 import '../../../widgets/stateless/custom_suffix_icon.dart';
+import '../../../widgets/stateless/default_button.dart';
+import '../../../widgets/stateless/form_error.dart';
+import '../../../widgets/stateless/no_account_text.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({Key? key}) : super(key: key);
@@ -63,6 +68,25 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
               errorStyle: TextStyle(height: 0),
             ),
           ),
+          SizedBox(
+            height: getProportionateScreenHeight(30),
+          ),
+          FormError(errors: errors),
+          SizedBox(
+            height: SizeConfig.screenHeight * 0.1,
+          ),
+          DefaultButton(
+            text: 'Continue',
+            press: () {
+              if (_formKey.currentState!.validate()) {
+                // call api send email forgot password
+              }
+            },
+          ),
+          SizedBox(
+            height: SizeConfig.screenHeight * 0.1,
+          ),
+          const NoAccountText(),
         ],
       ),
     );

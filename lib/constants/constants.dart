@@ -21,3 +21,9 @@ final TextStyle headingStyle = TextStyle(
   color: Colors.black,
   height: 1.5,
 );
+
+final TextStyle titleStyle = TextStyle(
+  color: Colors.black,
+  fontSize: getProportionateScreenWidth(28),
+  fontWeight: FontWeight.bold,
+);

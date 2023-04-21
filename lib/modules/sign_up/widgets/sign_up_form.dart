@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../modules/complete_profile/complete_profile_screen.dart';
 
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
 import '../../../constants/errors.dart';
+import '../../../modules/otp/otp_screen.dart';
 import '../../../utils/keyboard.dart';
 import '../../../widgets/stateless/custom_suffix_icon.dart';
 import '../../../widgets/stateless/default_button.dart';
@@ -73,7 +73,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 KeyboardUtil.hideKeyboard(context);
                 Navigator.pushNamed(
                   context,
-                  CompleteProfileScreen.routeName,
+                  OtpScreen.routeName,
                 );
               }
             },

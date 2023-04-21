@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './widgets/body.dart';
+
 class OtpScreen extends StatelessWidget {
   const OtpScreen({Key? key}) : super(key: key);
 
@@ -7,8 +9,12 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('OTP screen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('OTP Verification'),
+        centerTitle: true,
+      ),
+      body: const Body(),
     );
   }
 }
