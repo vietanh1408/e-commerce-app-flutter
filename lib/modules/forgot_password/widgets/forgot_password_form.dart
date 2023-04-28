@@ -48,7 +48,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
               if (value.isNotEmpty) {
                 removeError(error: emailRequiredError);
               }
-              return;
+              email = value;
             },
             validator: (value) {
               if (value!.isEmpty) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../modules/otp/widgets/otp_form.dart';
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
 
@@ -25,11 +26,42 @@ class Body extends StatelessWidget {
                   "We sent your code to +1 898 860 ***",
                   textAlign: TextAlign.center,
                 ),
+                buildTimer(),
+                const OtpForm(),
+                SizedBox(
+                  height: SizeConfig.screenHeight * 0.3,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'Resend OTP Code',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Row buildTimer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('This code will expired in '),
+        TweenAnimationBuilder(
+          tween: Tween(begin: 30.0, end: 0.0),
+          duration: const Duration(seconds: 30),
+          builder: (_, dynamic value, child) => Text(
+            '00:${value.toInt()}',
+            style: const TextStyle(color: kPrimaryColor),
+          ),
+        )
+      ],
     );
   }
 }

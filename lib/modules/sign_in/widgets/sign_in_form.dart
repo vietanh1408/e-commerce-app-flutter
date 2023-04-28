@@ -41,10 +41,10 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void handleLogin() {
+    Navigator.pushNamed(context, SignInSuccessScreen.routeName);
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       KeyboardUtil.hideKeyboard(context);
-      Navigator.pushNamed(context, SignInSuccessScreen.routeName);
     }
   }
 
@@ -117,7 +117,7 @@ class _SignInFormState extends State<SignInForm> {
         } else if (emailRegExp.hasMatch(value)) {
           removeError(error: emailInvalidError);
         }
-        return;
+        email = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -151,7 +151,7 @@ class _SignInFormState extends State<SignInForm> {
         } else if (value.length >= 8) {
           removeError(error: passwordLengthError);
         }
-        return;
+        password = value;
       },
       validator: (value) {
         if (value!.isEmpty) {

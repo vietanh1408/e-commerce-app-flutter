@@ -93,7 +93,7 @@ class _SignUpFormState extends State<SignUpForm> {
         } else if (emailRegExp.hasMatch(value)) {
           removeError(error: emailInvalidError);
         }
-        return;
+        email = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -127,7 +127,7 @@ class _SignUpFormState extends State<SignUpForm> {
         } else if (value.length >= 8) {
           removeError(error: passwordLengthError);
         }
-        return;
+        password = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -159,7 +159,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value == password) {
           removeError(error: passwordNotMatchError);
         }
-        return;
+        confirmPassword = value;
       },
       validator: (value) {
         if (value != password) {
