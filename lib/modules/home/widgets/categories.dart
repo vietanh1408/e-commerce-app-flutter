@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../config/size_config/size_config.dart';
 
 class Categories extends StatelessWidget {

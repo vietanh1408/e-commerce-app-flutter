@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:initproject/config/models/Product.dart';
+
+import '../../../config/models/Product.dart';
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
+import '../../../modules/detail/detail_screen.dart';
 
 class PopularProducts extends StatelessWidget {
   const PopularProducts({Key? key}) : super(key: key);
@@ -82,7 +84,11 @@ class PopularProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(140),
         child: GestureDetector(
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(
+            context,
+            DetailScreen.routeName,
+            arguments: ProductDetailArguments(product: product),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

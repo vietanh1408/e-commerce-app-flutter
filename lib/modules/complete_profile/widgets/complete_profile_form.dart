@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/errors.dart';
 import '../../../modules/otp/otp_screen.dart';

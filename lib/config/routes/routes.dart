@@ -9,6 +9,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import '../../modules/detail/detail_screen.dart';
 import '../../modules/forgot_password/forgot_password_screen.dart';
 import '../../modules/sign_in_success/sign_in_success_screen.dart';
 import '../../modules/otp/otp_screen.dart';
@@ -27,4 +28,5 @@ final Map<String, WidgetBuilder> routes = {
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
   OtpScreen.routeName: (context) => const OtpScreen(),
   ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen(),
+  DetailScreen.routeName: (context) => const DetailScreen(),
 };
