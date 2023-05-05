@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:initproject/config/models/Product.dart';
 import '../../../config/size_config/size_config.dart';
 import '../../../constants/constants.dart';
 
@@ -42,21 +44,16 @@ class PopularProducts extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              PopularProductCard(
-                image: 'assets/images/Image Popular Product 1.png',
-                tag: '1',
-                press: () {},
+              ...List.generate(
+                products.length,
+                (index) {
+                  if (products[index].isPopular) {
+                    return PopularProductCard(product: products[index]);
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
-              PopularProductCard(
-                image: 'assets/images/Image Popular Product 2.png',
-                tag: '2',
-                press: () {},
-              ),
-              PopularProductCard(
-                image: 'assets/images/Image Popular Product 3.png',
-                tag: '3',
-                press: () {},
-              )
+              SizedBox(width: getProportionateScreenWidth(20)),
             ],
           ),
         )
@@ -68,13 +65,13 @@ class PopularProducts extends StatelessWidget {
 class PopularProductCard extends StatelessWidget {
   const PopularProductCard({
     Key? key,
-    required this.image,
-    required this.tag,
-    required this.press,
+    this.width = 140,
+    this.aspectRatio = 1.02,
+    required this.product,
   }) : super(key: key);
 
-  final String? image, tag;
-  final GestureTapCallback press;
+  final double width, aspectRatio;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +82,7 @@ class PopularProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(140),
         child: GestureDetector(
-          onTap: press,
+          onTap: () {},
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,14 +97,53 @@ class PopularProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Hero(
-                    tag: tag!,
-                    child: Image.asset(image!),
+                    tag: product.id.toString(),
+                    child: Image.asset(product.images[0]),
                   ),
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
+              Text(
+                product.title,
+                style: const TextStyle(color: Colors.black),
+                maxLines: 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "\$${product.price}",
+                    style: TextStyle(
+                      fontSize: getProportionateScreenWidth(18),
+                      fontWeight: FontWeight.w600,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  InkWell(
+                    borderRadius: BorderRadius.circular(50),
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.all(getProportionateScreenWidth(8)),
+                      height: getProportionateScreenWidth(28),
+                      width: getProportionateScreenWidth(28),
+                      decoration: BoxDecoration(
+                        color: product.isFavorite
+                            ? kPrimaryColor.withOpacity(0.15)
+                            : kSecondaryColor.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: SvgPicture.asset(
+                        "assets/icons/Heart Icon_2.svg",
+                        color: product.isFavorite
+                            ? const Color(0xFFFF4848)
+                            : const Color(0xFFDBDEE4),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
